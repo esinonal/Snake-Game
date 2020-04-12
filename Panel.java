@@ -1,14 +1,5 @@
-
-
-
-
-
-
-//import javafx.scene.Parent;
 import processing.core.PApplet;
 import processing.core.PFont;
-
-
 
 public class Panel extends PApplet{
 	public int boxSize = 20;
@@ -16,28 +7,20 @@ public class Panel extends PApplet{
 		
 	PFont myFont;
 	
-	
-	
 	public static void main(String[] args) {
 		PApplet.main("Panel");
 	}	
 
-	
 	public void settings() {
 		size(600,600);
-	
 	}
 
-	
 	public void setup() {
 		frameRate(7);
 		mySnake = new Snake(this);
 		mySnake.createFood();
-	
-		
 	} 
 
-	
 	PFont f;
 	public void draw() {
 		//create the set up for background colors and options bar
@@ -65,9 +48,7 @@ public class Panel extends PApplet{
 			text("PAUSE", 520, 30);
 		}
 		
-		
 		mySnake.checkIfDead();
-		
 		
 		if (mySnake.alive) { //if alive 
 			
@@ -81,17 +62,14 @@ public class Panel extends PApplet{
 			if (mySnake.eatFood()) {
 				mySnake.createFood();
 			}
-
 		}
 		else { //it must be  dead
-			
 			//print the food and only the tail of the snake (as head went off board)
 			for (int i=0; i<mySnake.tail.length; i++) { //will only print the tail if there is any tail to begin with
 				rect(mySnake.tail[i][0], mySnake.tail[i][1], boxSize, boxSize);
 			}
 			mySnake.printFood();
-			
-			
+	
 			//write Game Over
 			fill(40);
 			rect(50, 190, 510, 100, 7);
@@ -100,12 +78,8 @@ public class Panel extends PApplet{
 			textSize(80);
 			text("GAME OVER!", 60, 270);
 		}
-		
-	
-	     
 	}
 	 
-	
 	public void keyPressed() {
 		if (mySnake.isPaused == false) {
 			if ((keyCode == UP) && (mySnake.xSpeed != 0) && (mySnake.ySpeed != 1)) {
@@ -148,9 +122,5 @@ public class Panel extends PApplet{
 				mySnake.isPaused = false;
 			}
 		}
-	}
-	
-	
-	
-	
+	}	
 }
