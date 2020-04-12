@@ -1,8 +1,5 @@
-
-
 import processing.core.PApplet;
 import java.lang.Math;
-
 
 public class Snake extends PApplet{
 	PApplet parent;
@@ -26,17 +23,13 @@ public class Snake extends PApplet{
 	private int[] valueToDeleteX = new int[1];
 	private int[] valueToDeleteY = new int[1];
 	
-	
-	
 	public Snake(PApplet p) {
 		parent = p;
 	}
 	
-	
 	public void update() {
 			
-			//if not eaten food -->
-			       
+			//if not eaten food -->   
 			if (length == (tail.length + 1)) {
 				if (tail.length == 0) {
 					valueToDeleteX[0] = x;
@@ -49,7 +42,6 @@ public class Snake extends PApplet{
 					tail[0][0] = x;
 					tail[0][1] = y;
 				}
-				
 				
 				else if (tail.length >= 2) {
 					//first shift each value down in the array (previous values)
@@ -73,15 +65,6 @@ public class Snake extends PApplet{
 				//update x y positions
 				x = x + xSpeed; 
 				y = y + ySpeed;
-				
-				
-				//constrain the x and y within the game board (this is not necessary anymore)
-				//x = constrain(x, 0, 600 - boxSize);
-				//y = constrain(y, heightOfSettingsBar, 600 - boxSize); 
-				
-				
-				
-				
 			}
 			else {
 				//else, you have just eaten food -->
@@ -104,21 +87,9 @@ public class Snake extends PApplet{
 					newTail[newTail.length-1][1] = valueToDeleteY[0];
 					
 				}
-				tail = newTail;
-				
-				
-				
-				
-			
-			
-		}
-			
-				
-			
+				tail = newTail;	
+		}	
 	}
-	
-
-	
 	
 	public void printSnake() {
 		//print head:
@@ -132,31 +103,25 @@ public class Snake extends PApplet{
 			for (int i=0; i<tail.length; i++) {
 				parent.rect(tail[i][0], tail[i][1], boxSize, boxSize);
 			}
-		}
-				
+		}		
 	}
 	
 	public void direction(int directionX, int directionY) {
 		xSpeed = directionX * boxSize;
 		ySpeed = directionY * boxSize;
-		
 	}
 	
 	public void createFood() {
-		
 		foodX = ((int) (Math.random() * 30)) * 20;
 		foodY = (((int) (Math.random() * 28)) * 20)+heightOfSettingsBar;
 		
 		while (foodIsOnSnake()) { //we must make sure the food does not generate on head or tail
 			foodX = ((int) (Math.random() * 30)) * 20;
 			foodY = (((int) (Math.random() * 28)) * 20)+heightOfSettingsBar;
-			
 		}
-		
 	}
 	
 	public boolean foodIsOnSnake() {
-		
 		 //check head - if on head return true
 		if ((foodX == x) && (foodY == y)) {
 			return true;
@@ -168,12 +133,9 @@ public class Snake extends PApplet{
 				return true;
 			}
 		}
-		
 		//if youve gotten this far, not on head and not on body so return false
 		return false;
 	}
-	
-	
 	
 	public void printFood() {
 		parent.fill(255, 61, 107);
@@ -190,8 +152,6 @@ public class Snake extends PApplet{
 			return false;
 		}
 	}
-
- 
 	
 	public void checkIfDead() {
 		for (int i=0; i<tail.length; i++) {
@@ -199,21 +159,12 @@ public class Snake extends PApplet{
 				alive = false;
 			}
 		}
-		
-		if  (     
-				((x == 600) && (y <=600) && (y>=20))
-		        || ((x == -20) && (y <=600) && (y>=20))
-		        || ((y == 600) && (x <=600) && (x>=0))
-		        || ((y == 20) && (x <=600) && (x>=0))     )     
-		{
+		if  (((x == 600) && (y <=600) && (y>=20))
+		     || ((x == -20) && (y <=600) && (y>=20))
+		     || ((y == 600) && (x <=600) && (x>=0))
+		     || ((y == 20) && (x <=600) && (x>=0)))     
+		   {
 			alive = false;
 		   }
-		   
 	}
-	
-	
-	
-	
-
 }
-
