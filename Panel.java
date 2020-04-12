@@ -111,7 +111,6 @@ public class Panel extends PApplet{
 		return false;
 	}
 	
-	
 	public void mouseClicked() {
 		//allow the pause/play
 		if (this.buttonOver()) {
